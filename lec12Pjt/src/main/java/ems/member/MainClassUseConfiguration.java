@@ -6,15 +6,19 @@ import java.util.Scanner;
 import java.util.Set;
 
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
+import org.springframework.context.support.GenericXmlApplicationContext;
 
-import ems.member.configration.MemberConfig;
+import ems.member.configuration.MemberConfig;
+import ems.member.configuration.MemberConfig1;
+import ems.member.configuration.MemberConfig2;
+import ems.member.configuration.MemberConfig3;
 import ems.member.service.EMSInformationService;
 import ems.member.service.StudentAllSelectService;
 import ems.member.service.StudentModifyService;
 import ems.member.service.StudentRegisterService;
 import ems.member.service.StudentSelectService;
 
-public class MainClassUseConfigration {
+public class MainClassUseConfiguration {
 
 	public static void main(String[] args) {
 		
@@ -39,8 +43,10 @@ public class MainClassUseConfigration {
 				"Law", "Statistics", "Computer", "Economics", "Public Administration"};
 
 //		StudentAssembler assembler = new StudentAssembler();
-		AnnotationConfigApplicationContext ctx = 
-				new AnnotationConfigApplicationContext(MemberConfig.class);
+		//GenericXmlApplicationContext ctx = 
+				//new GenericXmlApplicationContext("classpath:applicationContext.xml");
+		
+		AnnotationConfigApplicationContext ctx = new AnnotationConfigApplicationContext(MemberConfig1.class,MemberConfig2.class,MemberConfig3.class);
 		
 		EMSInformationService informationService = ctx.getBean("informationService", EMSInformationService.class);
 		informationService.outputEMSInformation();

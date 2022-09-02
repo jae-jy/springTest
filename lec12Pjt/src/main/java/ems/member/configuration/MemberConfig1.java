@@ -1,10 +1,15 @@
-package ems.member.configration;
+package ems.member.configuration;
+
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.context.annotation.Import;
 
+import ems.member.DataBaseConnectionInfo;
 import ems.member.dao.StudentDao;
+import ems.member.service.EMSInformationService;
 import ems.member.service.StudentAllSelectService;
 import ems.member.service.StudentDeleteService;
 import ems.member.service.StudentModifyService;
@@ -12,9 +17,8 @@ import ems.member.service.StudentRegisterService;
 import ems.member.service.StudentSelectService;
 
 @Configuration
-@Import({MemberConfig2.class, MemberConfig3.class})
-public class MemberConfigImport {
-
+public class MemberConfig1 {
+	
 	@Bean
 	public StudentDao studentDao() {
 		return new StudentDao();
@@ -31,13 +35,13 @@ public class MemberConfigImport {
 	}
 	
 	@Bean
-	public StudentSelectService selectService() {
-		return new StudentSelectService(studentDao());
+	public StudentDeleteService deleteService() {
+		return new StudentDeleteService(studentDao());
 	}
 	
 	@Bean
-	public StudentDeleteService deleteService() {
-		return new StudentDeleteService(studentDao());
+	public StudentSelectService selectService() {
+		return new StudentSelectService(studentDao());
 	}
 	
 	@Bean
